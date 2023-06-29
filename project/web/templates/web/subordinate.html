@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+<li>{{ subordinate.name }}</li>
+{% if.subordinates %}
+    <ul>
+        {% for subordinate in subordinate.subordinates %}
+            {% include 'subordinate.html' with subordinate=subordinate %}
+        {% endfor %}
+    </ul>
+{% endif %}
