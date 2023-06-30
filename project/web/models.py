@@ -3,13 +3,13 @@ from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
 
 
-# class Role(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     title = models.CharField(max_length=100)
-#     role_level = models.IntegerField(default=1)
-#
-#     def __str__(self):
-#        return self.title
+class Role(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100)
+    role_level = models.IntegerField(default=1)
+
+    def __str__(self):
+       return self.title
 
 
 class Worker(MPTTModel):
@@ -18,12 +18,15 @@ class Worker(MPTTModel):
     email = models.EmailField(null=True)
     hire_date = models.DateField(default=timezone.now)
     #position = models.ForeignKey(Role, on_delete=models.CASCADE)
-    position = models.CharField(max_length=100)
+    position = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True,)
 
+    # position = models.CharField(max_length=50)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subordinates')
 
+    #parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subordinates')
+
     class MPTTMeta:
-        order_insertion_by = ['name']
+        order_insertion_by = ['position']
 
     def __str__(self):
         return self.name

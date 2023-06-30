@@ -6,4 +6,4 @@ from .models import Worker
 def index(request):
     #return render(request, 'web/base.html')
     nodes = Worker.objects.all()
-    return render(request, "web/base.html", {'nodes': nodes}) #,   context_instance=RequestContext(request))
+    return render(request, "web/index.html", {'nodes': nodes}) #,   context_instance=RequestContext(request))

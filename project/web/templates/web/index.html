@@ -1,9 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'web/base.html' %}
+
+{% block content %}
+<p class="h1">Hierarchy of workers</p>
+
 {% load mptt_tags %}  
-<ul>
+<ul class="list-group">
     {% recursetree nodes %}
-        <li>
-            {{ node.name }}
+        <li class="list-group-item">
+            
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <p>{{ node.name }} - <span>{{ node.position }}</span></p> 
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">{{ node.email }}</a></li>
+                    <li><a class="dropdown-item" href="#">{{ node.hire_date }}</a></li>
+                </ul>
+            </div>
+            
             {% if not node.is_leaf_node %} 
                 <ul class="children">
                     {{ children }}
@@ -12,3 +26,4 @@
         </li>
     {% endrecursetree %}
 </ul>
+{% endblock %}

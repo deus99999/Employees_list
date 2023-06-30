@@ -3,6 +3,8 @@ from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 from .models import Worker#, Role,
 
+from .models import Role
+
 
 class Admin(admin.ModelAdmin):
     pass
@@ -14,5 +16,5 @@ class CustomMPTTModelAdmin(MPTTModelAdmin):
 # admin.site.register(Position, CustomMPTTModelAdmin)
 #admin.site.register(Genre, CustomMPTTModelAdmin)
 
-#admin.site.register(Role, Admin)
+admin.site.register(Role, Admin)
 admin.site.register(Worker, CustomMPTTModelAdmin)
