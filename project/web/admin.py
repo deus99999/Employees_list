@@ -1,7 +1,7 @@
 from django.contrib import admin
 # from .models import Employee, Position#, Genre
 from mptt.admin import MPTTModelAdmin
-from .models import Role, Worker
+from .models import Worker#, Role,
 
 
 class Admin(admin.ModelAdmin):
@@ -14,5 +14,5 @@ class CustomMPTTModelAdmin(MPTTModelAdmin):
 # admin.site.register(Position, CustomMPTTModelAdmin)
 #admin.site.register(Genre, CustomMPTTModelAdmin)
 
-admin.site.register(Role, Admin)
+#admin.site.register(Role, Admin)
 admin.site.register(Worker, CustomMPTTModelAdmin)
